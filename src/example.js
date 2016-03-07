@@ -1,6 +1,6 @@
+import PianoConfig from './example-config.js';
 import React from 'react';
 import ReactInstrumentationPiano from './index.js';
-import PianoConfig from './example-config.js';
 /* eslint-disable id-match */
 import { setupI13n } from 'react-i13n';
 // Simulation of a basic App.
@@ -11,6 +11,10 @@ class DemoApp extends React.Component {
       /* eslint-disable id-match */
       i13n: React.PropTypes.object,
     };
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   render() {
