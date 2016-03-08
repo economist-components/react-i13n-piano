@@ -42,7 +42,29 @@ export default class ReactInstrumentationPiano {
           if (this.config.debug) {
             window.tp.push([ 'setDebug', this.config.debug ]);
           }
+          if (this.config.sandbox) {
+            window.tp.push([ 'setSandbox', this.config.sandbox ]);
+          }
+          if (this.config.useTinypassAccounts) {
+            window.tp.push([ 'setUseTinypassAccounts', this.config.useTinypassAccounts ]);
+          }
+
+          return new Promise((resolve, reject) => {
+            window.tp.push([
+              'init', () => {
+                try {
+                  if (this.config.initCallback) {
+                    this.config.initCallback();
+                  }
+                } catch (initError) {
+                  reject(initError);
+                }
+                resolve();
+              },
+            ]);
+          });
         }
+        throw new Error('window.tp does not exist');
       })
       .catch((event) => {
         /* eslint-disable no-console */
