@@ -33034,7 +33034,27 @@ var ReactInstrumentationPiano = (function () {
             if (_this.config.debug) {
               window.tp.push(['setDebug', _this.config.debug]);
             }
+            if (_this.config.sandbox) {
+              window.tp.push(['setSandbox', _this.config.sandbox]);
+            }
+            if (_this.config.useTinypassAccounts) {
+              window.tp.push(['setUseTinypassAccounts', _this.config.useTinypassAccounts]);
+            }
+
+            return new Promise(function (resolve, reject) {
+              window.tp.push(['init', function () {
+                try {
+                  if (_this.config.initCallback) {
+                    _this.config.initCallback();
+                  }
+                } catch (initError) {
+                  reject(initError);
+                }
+                resolve();
+              }]);
+            });
           }
+          throw new Error('window.tp does not exist');
         })['catch'](function (event) {
           /* eslint-disable no-console */
           console.error('An error loading or executing Piano has occured: ', event.message);
