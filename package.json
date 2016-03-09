@@ -1,9 +1,9 @@
 {
-  "name": "@economist/component-react-i-13-n-piano",
+  "name": "@economist/react-i13n-piano",
   "description": "A i13n plugin for Piano",
-  "homepage": "https://github.com/economist-components/component-react-i-13-n-piano",
+  "homepage": "https://github.com/economist-components/component-react-i13n-piano",
   "bugs": {
-    "url": "https://github.com/economist-components/component-react-i-13-n-piano/issues"
+    "url": "https://github.com/economist-components/component-react-i13n-piano/issues"
   },
   "license": "MIT",
   "files": [
