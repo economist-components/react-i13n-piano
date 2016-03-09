@@ -5,7 +5,7 @@ import chai from 'chai';
 import spies from 'chai-spies';
 chai.use(spies);
 chai.should();
-mocha.setup({ globals: [ 'tp' ] });
+mocha.setup({ globals: [ 'tp', 'init', 'jQuery*' ] });
 describe('PianoPlugin is a i13n plugin for Piano', () => {
   describe('ensureScriptHasLoaded', () => {
     it('calls loadExternalScript if it was passed', () => {
