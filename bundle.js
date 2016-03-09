@@ -10221,7 +10221,7 @@ var clickHandler = require('../utils/clickHandler');
 var debug = require('debug')('I13nMixin');
 var DebugDashboard = require('../utils/DebugDashboard');
 var I13nUtils = require('./I13nUtils');
-var listen = require('subscribe-ui-event/dist/lib/listen');
+var listen = require('subscribe-ui-event').listen;
 var ReactI13n = require('../libs/ReactI13n');
 var ViewportMixin = require('./viewport/ViewportMixin');
 require('setimmediate');
@@ -10425,6 +10425,21 @@ var I13nMixin = {
     },
 
     /**
+     * _shouldFollowLink, provide a hook to check followLink.
+     * It check if component implement its own shouldFollowLink() method, 
+     * otherwise return props.followLink or props.follow
+     * @method _shouldFollowLink
+     * @private
+     */
+    _shouldFollowLink: function () {
+        if (undefined !== this.shouldFollowLink) {
+            return this.shouldFollowLink();
+        }
+
+        return (undefined !== props.followLink) ? props.followLink : props.follow;
+    },
+
+    /**
      * _subComponentsViewportDetection, will be executed by viewport mixin
      * @method _subComponentsViewportDetection
      * @private
@@ -10574,7 +10589,7 @@ var I13nMixin = {
 
 module.exports = I13nMixin;
 
-},{"../libs/ReactI13n":52,"../utils/DebugDashboard":56,"../utils/clickHandler":57,"./I13nUtils":54,"./viewport/ViewportMixin":55,"debug":61,"react":"react","react-dom":"react-dom","setimmediate":65,"subscribe-ui-event/dist/lib/listen":70}],54:[function(require,module,exports){
+},{"../libs/ReactI13n":52,"../utils/DebugDashboard":56,"../utils/clickHandler":57,"./I13nUtils":54,"./viewport/ViewportMixin":55,"debug":61,"react":"react","react-dom":"react-dom","setimmediate":65,"subscribe-ui-event":74}],54:[function(require,module,exports){
 var React = require('react');
 var ReactI13n = require('../libs/ReactI13n');
 
@@ -10767,7 +10782,7 @@ module.exports = Viewport;
  * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
  */
 /* global document, window*/
-var listen = require('subscribe-ui-event/dist/lib/listen');
+var listen = require('subscribe-ui-event').listen;
 
 var uniqueId = 0;
 
@@ -10944,7 +10959,7 @@ DebugDashboard.prototype.destroy = function () {
 
 module.exports = DebugDashboard;
 
-},{"subscribe-ui-event/dist/lib/listen":70}],57:[function(require,module,exports){
+},{"subscribe-ui-event":74}],57:[function(require,module,exports){
 /**
  * Copyright 2015, Yahoo Inc.
  * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
@@ -11002,7 +11017,7 @@ module.exports = function clickHandler (e) {
     var isRedirectLink = isDefaultRedirectLink(target);
     var isPreventDefault = true;
     var props = self.props;
-    var followLink = (undefined !== props.followLink) ? props.followLink : props.follow;
+    var followLink = self._shouldFollowLink();
     var href = '';
 
     // return and do nothing if the handler is append on a component without I13nMixin
@@ -33142,7 +33157,7 @@ var _chaiSpies2 = _interopRequireDefault(_chaiSpies);
 
 _chai2['default'].use(_chaiSpies2['default']);
 _chai2['default'].should();
-mocha.setup({ globals: ['tp'] });
+mocha.setup({ globals: ['tp', 'init', 'jQuery*'] });
 describe('PianoPlugin is a i13n plugin for Piano', function () {
   describe('ensureScriptHasLoaded', function () {
     it('calls loadExternalScript if it was passed', function () {
