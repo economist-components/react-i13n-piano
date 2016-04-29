@@ -34774,9 +34774,6 @@ var ReactInstrumentationPiano = (function () {
     _classCallCheck(this, ReactInstrumentationPiano);
 
     this.config = _extends({
-      endpoint: 'https://sandbox.tinypass.com/api/v3',
-      aid: 'M3UZnikdix',
-      debug: true,
       externalScript: '//sandbox.tinypass.com/api/tinypass.min.js'
     }, config);
   }
@@ -34788,7 +34785,7 @@ var ReactInstrumentationPiano = (function () {
 
       if (!this.script) {
         var pPiano = typeof this.config.loadExternalScript === 'function' ? this.config.loadExternalScript() : (0, _promisescript2['default'])({
-          url: this.config.externalScript,
+          url: 'https:' + this.config.externalScript,
           type: 'script',
           exposed: 'tp'
         });
