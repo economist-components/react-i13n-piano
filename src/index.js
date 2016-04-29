@@ -4,7 +4,6 @@ export default class ReactInstrumentationPiano {
 
   constructor(config) {
     this.config = {
-      debug: true,
       externalScript: '//sandbox.tinypass.com/api/tinypass.min.js',
       ...config,
     };
