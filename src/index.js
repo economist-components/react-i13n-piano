@@ -24,7 +24,7 @@ export default class ReactInstrumentationPiano {
       const pPiano = typeof this.config.loadExternalScript === 'function' ?
         this.config.loadExternalScript() :
         promisescript({
-          url: `https://${ this.config.externalScript }`,
+          url: `https:${ this.config.externalScript }`,
           type: 'script',
           exposed: 'tp',
         });
