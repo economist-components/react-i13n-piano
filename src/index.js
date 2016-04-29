@@ -4,9 +4,6 @@ export default class ReactInstrumentationPiano {
 
   constructor(config) {
     this.config = {
-      endpoint: 'https://sandbox.tinypass.com/api/v3',
-      aid: 'M3UZnikdix',
-      debug: true,
       externalScript: '//sandbox.tinypass.com/api/tinypass.min.js',
       ...config,
     };
@@ -27,7 +24,7 @@ export default class ReactInstrumentationPiano {
       const pPiano = typeof this.config.loadExternalScript === 'function' ?
         this.config.loadExternalScript() :
         promisescript({
-          url: this.config.externalScript,
+          url: `https:${ this.config.externalScript }`,
           type: 'script',
           exposed: 'tp',
         });
