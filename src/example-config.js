@@ -1,10 +1,9 @@
 // This config is for example only.
 /* global window: false */
+const aid = 'M3UZnikdix';
 const dev = {
-  endpoint: 'https://sandbox.tinypass.com/api/v3',
-  aid: 'M3UZnikdix',
   debug: true,
-  externalScript: '//sandbox.tinypass.com/api/tinypass.min.js',
+  externalScript: `//sandbox.tinypass.com/xbuilder/experience/load?aid=${ aid }`,
 };
 const PianoConfig = {
   ...dev,

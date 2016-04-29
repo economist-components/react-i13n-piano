@@ -1,16 +1,17 @@
-/* eslint-disable id-match, no-undef, camelcase */
+/* eslint-disable id-match, id-length, no-undef, camelcase */
 import PianoConfig from '../src/example-config.js';
 import ReactI13nPiano from '../src/index';
 import chai from 'chai';
 import spies from 'chai-spies';
 chai.use(spies);
 chai.should();
-mocha.setup({ globals: [ 'tp', 'init', 'jQuery*' ] });
+mocha.setup({ globals: [ 'tp', 'init', 'jQuery*', 'setAdblockerCookie', 'script' ] });
 describe('PianoPlugin is a i13n plugin for Piano', () => {
   describe('ensureScriptHasLoaded', () => {
     it('calls loadExternalScript if it was passed', () => {
+      window.tp = [];
       const loadExternalScript = chai.spy(() => Promise.resolve());
-      const plugin = new ReactI13nPiano({ loadExternalScript });
+      const plugin = new ReactI13nPiano({ ...PianoConfig, loadExternalScript });
       plugin.ensureScriptHasLoaded();
       loadExternalScript.should.have.been.called(1);
     });
