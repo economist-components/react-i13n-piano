@@ -101,7 +101,8 @@
   },
   "dependencies": {
     "promisescript": "^1.1.0",
-    "react": "^0.14.8||^15.0.0"
+    "react": "^0.14.8||^15.0.0",
+    "react-i13n": "^2.0.2"
   },
   "devDependencies": {
     "@economist/doc-pack": "^1.0.7",
@@ -153,8 +154,5 @@
     "travis-after-all": "^1.4.4",
     "validate-commit-msg": "^2.6.1",
     "watchify": "^3.7.0"
-  },
-  "peerDependencies": {
-    "react-i13n": "^2.0.2"
   }
 }
