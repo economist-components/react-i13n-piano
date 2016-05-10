@@ -89,7 +89,11 @@ export default class ReactInstrumentationPiano {
   pageview(payload) {
     return this.ensureScriptHasLoaded().then(() => (
       this.updateTinypass(this.generatePayload(payload, 'pageview'))
-    ));
+    )).catch((pageViewError) => {
+      /* eslint-disable no-console */
+      console.error(pageViewError.stack);
+      /* eslint-enable no-console */
+    });
   }
   /* eslint-enable no-unused-vars */
 
