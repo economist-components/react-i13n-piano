@@ -90,32 +90,26 @@ export default class ReactInstrumentationPiano {
     return props;
   }
 
-  /* eslint-disable no-unused-vars */
   customEvent(payload, customEventName = 'pageview') {
-    return this.ensureScriptHasLoaded().then(() => (
-      this.updateTinypass(this.generatePayload(payload, customEventName))
-    )).catch((customEventError) => {
+    return this.ensureScriptHasLoaded().then(() => {
+      this.generatePayload(payload, customEventName);
+      this.updateTinypass();
+    }).catch((customEventError) => {
       /* eslint-disable no-console */
       console.error(customEventError.stack);
       /* eslint-enable no-console */
     });
   }
-  /* eslint-enable no-unused-vars */
 
-  /* eslint-disable no-unused-vars */
   pageview(payload) {
     return this.customEvent(payload);
   }
-  /* eslint-enable no-unused-vars */
 
   // Piano experiences could be evaluated in relation to a user status change.
   // The user status change on SPA could be not connected to a pageview event.
-  /* eslint-disable no-unused-vars */
   userinformationchange(payload) {
     return this.customEvent(payload, 'userinformationchange');
   }
-  /* eslint-enable no-unused-vars */
-
   updateTinypass() {
     /* eslint-disable id-match, camelcase */
     return window.tp.experience.execute();

@@ -42,11 +42,12 @@ describe('PianoPlugin is a i13n plugin for Piano', () => {
         example: 'test',
       };
       plugin.updateTinypass = chai.spy();
-      plugin.generatePayload = chai.spy(() => 'payloadGenerated');
+      plugin.generatePayload = chai.spy();
       plugin.customEvent(payload, 'pageview').then(() => {
         plugin.ensureScriptHasLoaded.should.have.been.called.exactly(1);
         plugin.updateTinypass.should.have.been.called.exactly(1);
-        plugin.updateTinypass.should.have.been.called.with('payloadGenerated');
+        plugin.generatePayload.should.have.been.called.exactly(1);
+        plugin.generatePayload.should.have.been.called.with(payload, 'pageview');
         done();
       })
       .catch((error) => {
