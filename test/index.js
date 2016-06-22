@@ -12,7 +12,7 @@ describe('PianoPlugin is a i13n plugin for Piano', () => {
       const loadExternalScript = chai.spy(() => Promise.resolve());
       const plugin = new ReactI13nPiano({ ...PianoConfig, loadExternalScript });
       plugin.ensureScriptHasLoaded();
-      loadExternalScript.should.have.been.called(1);
+      loadExternalScript.should.have.been.called.exactly(1);
     });
   });
   describe('piano plugin', () => {
@@ -21,7 +21,7 @@ describe('PianoPlugin is a i13n plugin for Piano', () => {
       const TrackedApp = new ReactI13nPiano(PianoConfig);
       TrackedApp.updateTinypass = chai.spy(() => Promise.resolve());
       return TrackedApp.pageview().then(() => {
-        TrackedApp.updateTinypass.should.have.been.called(1);
+        TrackedApp.updateTinypass.should.have.been.called.exactly(1);
         const pianoTp = window.tp;
         pianoTp.should.have.property('aid', 'M3UZnikdix');
         pianoTp.should.have.property('customPageUrl', 'http://www.economist.com');
@@ -63,7 +63,7 @@ describe('PianoPlugin is a i13n plugin for Piano', () => {
       plugin.pageview({
         example: 'test',
       });
-      plugin.customEvent.should.have.been.called(1);
+      plugin.customEvent.should.have.been.called.exactly(1);
     });
   });
   describe('userinformationchange', () => {
@@ -75,7 +75,7 @@ describe('PianoPlugin is a i13n plugin for Piano', () => {
         example: 'test',
       };
       plugin.userinformationchange(payload);
-      plugin.customEvent.should.have.been.called(1);
+      plugin.customEvent.should.have.been.called.exactly(1);
       plugin.customEvent.should.have.been.called.with(payload, 'userinformationchange');
     });
   });
