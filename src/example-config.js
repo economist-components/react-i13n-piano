@@ -2,7 +2,6 @@
 /* global window: false */
 const aid = 'M3UZnikdix';
 const dev = {
-  debug: true,
   externalScript: `//sandbox.tinypass.com/xbuilder/experience/load?aid=${ aid }`,
 };
 const PianoConfig = {
