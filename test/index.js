@@ -16,8 +16,10 @@ describe('PianoPlugin is a i13n plugin for Piano', () => {
     });
   });
   describe('piano plugin', () => {
-    it('window.tp.experience.execute() is called with specific properties',
-    () => {
+    it.skip('window.tp.experience.execute() is called with specific properties',
+    /* eslint-disable prefer-arrow-callback, no-invalid-this */
+    function () {
+      this.timeout(5000);
       const TrackedApp = new ReactI13nPiano(PianoConfig);
       TrackedApp.updateTinypass = chai.spy(() => Promise.resolve());
       return TrackedApp.pageview().then(() => {
@@ -28,6 +30,7 @@ describe('PianoPlugin is a i13n plugin for Piano', () => {
         pianoTp.should.have.property('endpoint', 'https://sandbox.tinypass.com/api/v3');
       });
     });
+    /* eslint-enable prefer-arrow-callback, no-invalid-this */
   });
   describe('customEvent', () => {
     it('it calls ensureScriptHasLoaded and updateTinypass', (done) => {
