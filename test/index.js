@@ -1,9 +1,12 @@
 /* eslint-disable id-match, id-length, no-undef, camelcase */
+import 'babel-polyfill';
 import PianoConfig from '../src/example-config.js';
 import ReactI13nPiano from '../src/index';
 import chai from 'chai';
 import spies from 'chai-spies';
-chai.use(spies).should();
+
+chai.should();
+chai.use(spies);
 mocha.setup({ globals: [ 'tp', 'init', 'jQuery*', 'setAdblockerCookie', 'script' ] });
 describe('PianoPlugin is a i13n plugin for Piano', () => {
   describe('ensureScriptHasLoaded', () => {

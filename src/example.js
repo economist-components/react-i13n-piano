@@ -1,5 +1,6 @@
 import PianoConfig from './example-config.js';
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactInstrumentationPiano from './index.js';
 /* eslint-disable id-match */
 import { setupI13n } from 'react-i13n';
@@ -9,7 +10,7 @@ class DemoApp extends React.Component {
   static get propTypes() {
     return {
       /* eslint-disable id-match */
-      i13n: React.PropTypes.object,
+      i13n: PropTypes.object,
     };
   }
 
