@@ -103,7 +103,7 @@
     "promisescript": "^1.2.0"
   },
   "peerDependencies": {
-    "react-i13n": "^2.7.1"
+    "react-i13n": "^2.0.13"
   },
   "devDependencies": {
     "@economist/doc-pack": "^1.0.7",
